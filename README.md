@@ -1,7 +1,7 @@
 <img src="https://github.com/abraao69/ApiRestful-teste/blob/main/logo.png" alt="Logo" width="200" height="100">
 
 
-# Setup-Docker em php-8.2 containers Docker.  
+# Setup-Docker em php-7.4 containers Docker.  
     
   
 ## O servidor está configurado com muitos complementos sendo grande parte deles desnecessários.  

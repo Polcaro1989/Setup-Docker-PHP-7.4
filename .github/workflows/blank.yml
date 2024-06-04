@@ -34,8 +34,10 @@ jobs:
       - name: Get container IP and port
         id: container_info
         run: |
-          CONTAINER_IP=$(docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' $(docker-compose ps -q))
-          CONTAINER_PORT=$(docker inspect -f '{{(index (index .NetworkSettings.Ports "80/tcp") 0).HostPort}}' $(docker-compose ps -q))
+          CONTAINER_ID=$(docker-compose ps -q)
+          CONTAINER_IP=$(docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' $CONTAINER_ID)
+          CONTAINER_PORTS=$(docker inspect -f '{{range $p, $conf := .NetworkSettings.Ports}}{{$p}}{{end}}' $CONTAINER_ID)
+          CONTAINER_PORT=$(echo $CONTAINER_PORTS | cut -d '/' -f 1)
           echo "The application is running at http://$CONTAINER_IP:$CONTAINER_PORT"
           echo "::set-output name=ip::$CONTAINER_IP"
           echo "::set-output name=port::$CONTAINER_PORT"
@@ -43,4 +45,4 @@ jobs:
       # Open a terminal to access the running container
       - name: Access container
         run: |
-          docker exec -it $(docker-compose ps -q) bash
+          docker exec -it $CONTAINER_ID bash

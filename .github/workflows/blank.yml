@@ -1,42 +1,20 @@
-name: CI
+# Retrieve the container ID
+CONTAINER_ID=$(docker-compose ps -q)
 
-on:
-  push:
-    branches: [ "master" ]
-  pull_request:
-    branches: [ "master" ]
-  workflow_dispatch:
+# Retrieve the container IP address
+CONTAINER_IP=$(docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' $CONTAINER_ID)
 
-jobs:
+# Retrieve the application port
+APP_PORT=$(docker port $CONTAINER_ID 8085/tcp | cut -d':' -f2)
 
-  build:
-    runs-on: ubuntu-latest
+# Retrieve the PHPMyAdmin port
+PHPMYADMIN_PORT=$(docker port $CONTAINER_ID 9095/tcp | cut -d':' -f2)
 
-    steps:
-    - uses: actions/checkout@v4
+# Print the application and PHPMyAdmin URLs
+echo "The application is running at http://$CONTAINER_IP:$APP_PORT"
+echo "PHPMyAdmin is running at http://$CONTAINER_IP:$PHPMYADMIN_PORT"
 
-    - name: Build and start the application
-      run: |
-        docker-compose up --build -d
-
-    - name: Get container information
-      id: container_info
-      run: |
-        CONTAINER_ID=$(docker-compose ps -q)
-        CONTAINER_IP=$(docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' $CONTAINER_ID)
-        APP_PORT=$(docker port $CONTAINER_ID 8085/tcp | cut -d':' -f2)
-        PHPMYADMIN_PORT=$(docker port $CONTAINER_ID 9095/tcp | cut -d':' -f2)
-        echo "The application is running at http://$CONTAINER_IP:$APP_PORT"
-        echo "PHPMyAdmin is running at http://$CONTAINER_IP:$PHPMYADMIN_PORT"
-        echo "::set-output name=container_ip::$CONTAINER_IP"
-        echo "::set-output name=app_port::$APP_PORT"
-        echo "::set-output name=phpmyadmin_port::$PHPMYADMIN_PORT"
-
-    - name: Access application
-      run: |
-        echo "Accessing application at http://${{ steps.container_info.outputs.container_ip }}:${{ steps.container_info.outputs.app_port }}"
-        echo "Accessing PHPMyAdmin at http://${{ steps.container_info.outputs.container_ip }}:${{ steps.container_info.outputs.phpmyadmin_port }}"
-
-    - name: Access container
-      run: |
-        docker-compose exec -it service_name bash
+# Write the output to environment files
+echo "container_ip=$CONTAINER_IP" >> $GITHUB_OUTPUT
+echo "app_port=$APP_PORT" >> $GITHUB_OUTPUT
+echo "phpmyadmin_port=$PHPMYADMIN_PORT" >> $GITHUB_OUTPUT

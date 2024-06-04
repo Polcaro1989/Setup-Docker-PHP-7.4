@@ -22,32 +22,35 @@ jobs:
     - name: Get container information
       id: container_info
       run: |
-        # Retrieve the container ID
-        CONTAINER_ID=$(docker-compose ps -q my-app)
+        # Wait for the application to start
+        sleep 10
 
-        # Retrieve the container IP address
-        CONTAINER_IP=$(docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' $CONTAINER_ID)
+        # Retrieve the container ID for the MariaDB service
+        MARIADB_CONTAINER_ID=$(docker-compose ps -q testinho-mariadb)
 
-        # Retrieve the application port
-        APP_PORT=$(docker inspect -f '{{(index (index .NetworkSettings.Ports "8000/tcp") 0).HostPort}}' $CONTAINER_ID)
+        # Retrieve the IP address of the MariaDB container
+        MARIADB_CONTAINER_IP=$(docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' $MARIADB_CONTAINER_ID)
 
-        # Retrieve the PHPMyAdmin port
-        PHPMYADMIN_PORT=$(docker inspect -f '{{(index (index .NetworkSettings.Ports "9000/tcp") 0).HostPort}}' $CONTAINER_ID)
+        # Retrieve the port for the MariaDB service
+        MARIADB_PORT=$(docker-compose port testinho-mariadb 3306 | cut -d':' -f2)
 
-        # Print the application and PHPMyAdmin URLs
-        echo "The application is running at http://$CONTAINER_IP:$APP_PORT"
-        echo "PHPMyAdmin is running at http://$CONTAINER_IP:$PHPMYADMIN_PORT"
+        # Retrieve the port for the PHPMyAdmin service
+        PHPMYADMIN_PORT=$(docker-compose port phpmyadmin 80 | cut -d':' -f2)
+
+        # Print the MariaDB and PHPMyAdmin URLs
+        echo "The MariaDB service is running at $MARIADB_CONTAINER_IP:$MARIADB_PORT"
+        echo "PHPMyAdmin is running at http://$MARIADB_CONTAINER_IP:$PHPMYADMIN_PORT"
 
         # Write the output to environment files
-        echo "container_ip=$CONTAINER_IP" >> $GITHUB_OUTPUT
-        echo "app_port=$APP_PORT" >> $GITHUB_OUTPUT
+        echo "mariadb_container_ip=$MARIADB_CONTAINER_IP" >> $GITHUB_OUTPUT
+        echo "mariadb_port=$MARIADB_PORT" >> $GITHUB_OUTPUT
         echo "phpmyadmin_port=$PHPMYADMIN_PORT" >> $GITHUB_OUTPUT
 
-    - name: Access application
+    - name: Access MariaDB and PHPMyAdmin
       run: |
-        echo "Accessing application at http://${{ steps.container_info.outputs.container_ip }}:${{ steps.container_info.outputs.app_port }}"
-        echo "Accessing PHPMyAdmin at http://${{ steps.container_info.outputs.container_ip }}:${{ steps.container_info.outputs.phpmyadmin_port }}"
+        echo "Accessing MariaDB at ${{ steps.container_info.outputs.mariadb_container_ip }}:${{ steps.container_info.outputs.mariadb_port }}"
+        echo "Accessing PHPMyAdmin at http://${{ steps.container_info.outputs.mariadb_container_ip }}:${{ steps.container_info.outputs.phpmyadmin_port }}"
 
     - name: Access container
       run: |
-        docker-compose exec -it my-app bash
+        docker-compose exec -it testinho-mariadb bash

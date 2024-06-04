@@ -24,8 +24,8 @@ jobs:
       run: |
         CONTAINER_ID=$(docker-compose ps -q)
         CONTAINER_IP=$(docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' $CONTAINER_ID)
-        APP_PORT=$(docker inspect -f '{{(index (index .NetworkSettings.Ports "8085/tcp") 0).HostPort}}' $CONTAINER_ID)
-        PHPMYADMIN_PORT=$(docker inspect -f '{{(index (index .NetworkSettings.Ports "9095/tcp") 0).HostPort}}' $CONTAINER_ID)
+        APP_PORT=$(docker port $CONTAINER_ID 8085/tcp | cut -d':' -f2)
+        PHPMYADMIN_PORT=$(docker port $CONTAINER_ID 9095/tcp | cut -d':' -f2)
         echo "The application is running at http://$CONTAINER_IP:$APP_PORT"
         echo "PHPMyAdmin is running at http://$CONTAINER_IP:$PHPMYADMIN_PORT"
         echo "::set-output name=container_ip::$CONTAINER_IP"

@@ -1,48 +1,35 @@
-# This is a basic workflow to help you get started with Actions
-
 name: CI
 
-# Controls when the workflow will run
 on:
-  # Triggers the workflow on push or pull request events but only for the "master" branch
   push:
     branches: [ "master" ]
   pull_request:
     branches: [ "master" ]
-
-  # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # This workflow contains a single job called "build"
+
   build:
-    # The type of runner that the job will run on
     runs-on: ubuntu-latest
 
-    # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v4
+    - uses: actions/checkout@v4
 
-      # Build and start the Docker Compose application
-      - name: Build and start the application
-        run: |
-          docker-compose up --build -d
-      
-      # Obtain the IP address and port of the running container
-      - name: Get container IP and port
-        id: container_info
-        run: |
-          CONTAINER_ID=$(docker-compose ps -q)
-          CONTAINER_IP=$(docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' $CONTAINER_ID)
-          CONTAINER_PORTS=$(docker inspect -f '{{range $p, $conf := .NetworkSettings.Ports}}{{$p}}{{end}}' $CONTAINER_ID)
-          CONTAINER_PORT=$(echo $CONTAINER_PORTS | cut -d '/' -f 1)
-          echo "The application is running at http://$CONTAINER_IP:$CONTAINER_PORT"
-          echo "::set-output name=ip::$CONTAINER_IP"
-          echo "::set-output name=port::$CONTAINER_PORT"
-      
-      # Open a terminal to access the running container
-      - name: Access container
-        run: |
-          docker exec -it $CONTAINER_ID bash
+    - name: Build and start the application
+      run: |
+        docker-compose up --build -d
+
+    - name: Get container IP and port
+      id: container_info
+      run: |
+        CONTAINER_ID=$(docker-compose ps -q)
+        CONTAINER_IP=$(docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' $CONTAINER_ID)
+        CONTAINER_PORTS=$(docker inspect -f '{{range $p, $conf := .NetworkSettings.Ports}}{{$p}}{{end}}' $CONTAINER_ID)
+        CONTAINER_PORT=$(echo $CONTAINER_PORTS | cut -d '/' -f 1)
+        echo "The application is running at http://$CONTAINER_IP:$CONTAINER_PORT"
+        echo "::set-output name=ip::$CONTAINER_IP"
+        echo "::set-output name=port::$CONTAINER_PORT"
+
+    - name: Access container
+      run: |
+        docker-compose exec -it service_name bash

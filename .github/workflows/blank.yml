@@ -16,6 +16,15 @@ jobs:
     - uses: actions/checkout@v4
 
     - name: Build and start the application
+      env:
+        DB_CONNECTION: testinho-mariadb
+        DB_HOST: testinho-mariadb
+        DB_PORT: 3306
+        DB_DATABASE: vogue
+        DB_USERNAME: root
+        DB_PASSWORD: root
+        APP_PORT: 8085
+        PHPMYADMIN_PORT: 9095
       run: |
         docker-compose -f docker-compose.yml up --build -d
 
@@ -31,24 +40,18 @@ jobs:
         # Retrieve the IP address of the MariaDB container
         MARIADB_CONTAINER_IP=$(docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' $MARIADB_CONTAINER_ID)
 
-        # Retrieve the port for the MariaDB service
-        MARIADB_PORT=$(docker-compose port testinho-mariadb 3306 | cut -d':' -f2)
-
-        # Retrieve the port for the PHPMyAdmin service
-        PHPMYADMIN_PORT=$(docker-compose port phpmyadmin 80 | cut -d':' -f2)
-
         # Print the MariaDB and PHPMyAdmin URLs
-        echo "The MariaDB service is running at $MARIADB_CONTAINER_IP:$MARIADB_PORT"
-        echo "PHPMyAdmin is running at http://$MARIADB_CONTAINER_IP:$PHPMYADMIN_PORT"
+        echo "The MariaDB service is running at $MARIADB_CONTAINER_IP:3306"
+        echo "PHPMyAdmin is running at http://$MARIADB_CONTAINER_IP:9095"
 
         # Write the output to environment files
         echo "mariadb_container_ip=$MARIADB_CONTAINER_IP" >> $GITHUB_OUTPUT
-        echo "mariadb_port=$MARIADB_PORT" >> $GITHUB_OUTPUT
-        echo "phpmyadmin_port=$PHPMYADMIN_PORT" >> $GITHUB_OUTPUT
+        echo "app_port=8085" >> $GITHUB_OUTPUT
+        echo "phpmyadmin_port=9095" >> $GITHUB_OUTPUT
 
     - name: Access MariaDB and PHPMyAdmin
       run: |
-        echo "Accessing MariaDB at ${{ steps.container_info.outputs.mariadb_container_ip }}:${{ steps.container_info.outputs.mariadb_port }}"
+        echo "Accessing MariaDB at ${{ steps.container_info.outputs.mariadb_container_ip }}:3306"
         echo "Accessing PHPMyAdmin at http://${{ steps.container_info.outputs.mariadb_container_ip }}:${{ steps.container_info.outputs.phpmyadmin_port }}"
 
     - name: Access container

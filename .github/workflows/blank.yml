@@ -29,3 +29,18 @@ jobs:
       - name: Build and start the application
         run: |
           docker-compose up --build -d
+      
+      # Obtain the IP address and port of the running container
+      - name: Get container IP and port
+        id: container_info
+        run: |
+          CONTAINER_IP=$(docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' $(docker-compose ps -q))
+          CONTAINER_PORT=$(docker inspect -f '{{(index (index .NetworkSettings.Ports "80/tcp") 0).HostPort}}' $(docker-compose ps -q))
+          echo "The application is running at http://$CONTAINER_IP:$CONTAINER_PORT"
+          echo "::set-output name=ip::$CONTAINER_IP"
+          echo "::set-output name=port::$CONTAINER_PORT"
+      
+      # Open a terminal to access the running container
+      - name: Access container
+        run: |
+          docker exec -it $(docker-compose ps -q) bash

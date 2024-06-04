@@ -1,15 +1,15 @@
-name: CI
+name: Application CI/CD
 
 on:
   push:
-    branches: [ "master" ]
+    branches: [ "develop" ]
   pull_request:
-    branches: [ "master" ]
+    branches: [ "main" ]
   workflow_dispatch:
 
 jobs:
 
-  build:
+  build-and-deploy:
     runs-on: ubuntu-latest
 
     steps:
@@ -17,22 +17,22 @@ jobs:
 
     - name: Build and start the application
       run: |
-        docker-compose up --build -d
+        docker-compose -f docker-compose.yml up --build -d
 
     - name: Get container information
       id: container_info
       run: |
         # Retrieve the container ID
-        CONTAINER_ID=$(docker-compose ps -q)
+        CONTAINER_ID=$(docker-compose ps -q my-app)
 
         # Retrieve the container IP address
         CONTAINER_IP=$(docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' $CONTAINER_ID)
 
         # Retrieve the application port
-        APP_PORT=$(docker inspect -f '{{(index (index .NetworkSettings.Ports "8085/tcp") 0).HostPort}}' $CONTAINER_ID)
+        APP_PORT=$(docker inspect -f '{{(index (index .NetworkSettings.Ports "8000/tcp") 0).HostPort}}' $CONTAINER_ID)
 
         # Retrieve the PHPMyAdmin port
-        PHPMYADMIN_PORT=$(docker inspect -f '{{(index (index .NetworkSettings.Ports "9095/tcp") 0).HostPort}}' $CONTAINER_ID)
+        PHPMYADMIN_PORT=$(docker inspect -f '{{(index (index .NetworkSettings.Ports "9000/tcp") 0).HostPort}}' $CONTAINER_ID)
 
         # Print the application and PHPMyAdmin URLs
         echo "The application is running at http://$CONTAINER_IP:$APP_PORT"
@@ -50,4 +50,4 @@ jobs:
 
     - name: Access container
       run: |
-        docker-compose exec -it service_name bash
+        docker-compose exec -it my-app bash

@@ -5,7 +5,7 @@
 </div>
 # Setup-Docker em php-7.4 containers Docker.  
 
-<img src="  https://i.ytimg.com/vi/TflDUt3FCDg/maxresdefault.jpg" alt="Logo" width="1000" height="600">
+<img src="https://i.ytimg.com/vi/TflDUt3FCDg/maxresdefault.jpg" alt="Logo" width="1000" height="600">
 
 ## O servidor está configurado com muitos complementos sendo grande parte deles desnecessários.  
 Retire-os conforme quiser personalizar sua instalação no arquivo dockerfile.  

@@ -1,5 +1,5 @@
 <div style="display: flex; align-items: center;">
-  <img src="" alt="Logo" width="200" height="100">
+  <img src="https://github.com/abraao69/Setup-Docker-PHP-7.4/blob/master/logo.png" alt="Logo" width="200" height="100">
   <br><br>
 </div>
 <h1>Setup-Docker em php-7.4 containers Docker. </h1>

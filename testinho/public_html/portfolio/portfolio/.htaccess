@@ -1,0 +1,9 @@
+RewriteEngine On    # Turn on the rewriting engine
+
+RewriteRule    ^inicio/?$    index.php    [NC,L]
+RewriteRule    ^sobre/?$    sobre.php    [NC,L]
+RewriteRule    ^cursos/?$    cursos.php    [NC,L]
+RewriteRule    ^contato/?$    contato.php    [NC,L]
+RewriteRule    ^portfolio/?$    portfolio.php    [NC,L]
+RewriteRule    ^servicos/?$    servicos.php    [NC,L]
+RewriteRule    ^servicos/detalhes?$    servicodetail.php    [NC,L]

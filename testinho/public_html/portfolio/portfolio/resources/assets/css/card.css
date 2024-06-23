@@ -1,0 +1,72 @@
+.cards {
+    max-width: 1100px;
+    margin: 0 auto;
+    text-align: center;
+    padding: 30px;
+  }
+  
+  .cards h2.header {
+    font-size: 40px;
+    margin: 0 0 30px 0;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  
+  .services {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center; /* Alinha os cards horizontalmente */
+  }
+  
+  .content {
+    flex: 0 0 calc(20% - 20px); /* Ajuste o tamanho dos cards */
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    transition: all .3s ease;
+    margin-bottom: 20px;
+    margin-right: 70px; /* Espaçamento horizontal entre os cards */
+  }
+  
+  .content:hover {
+    border-color: #1DA1F2;
+    box-shadow: 0 0 10px rgba(29, 161, 242, 0.5);
+  }
+  
+  .content img {
+    max-width: 60px;
+    height: 60px; /* Definindo uma altura fixa para todas as imagens */
+    object-fit: cover; /* Garante que a imagem cubra todo o espaço disponível */
+  }
+  
+  .content h2 {
+    font-size: 18px;
+    margin-top: 10px;
+  }
+  
+  .content p {
+    font-size: 14px;
+    margin-top: 10px;
+  }
+  
+  .content a {
+    margin-top: 10px;
+    padding: 8px 20px;
+    background-color: #1DA1F2;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 20px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .content a:hover {
+    background-color: #0d8aed;
+  }
+  
+  @media (max-width: 900px) {
+    .content {
+      flex: 0 0 calc(40% - 20px);
+      margin-right: 20px; /* Remove o espaçamento horizontal nos dispositivos de largura menor */
+    }
+  }
+  

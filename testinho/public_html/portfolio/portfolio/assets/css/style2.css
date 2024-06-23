@@ -1,0 +1,21 @@
+.color-1 {
+    background-color: #261b86;
+}
+
+.slide {
+    margin-top: -10%;
+}
+
+.error-message {
+    color: red;
+    font-size: 15px;
+}
+
+    /*  Muda cor da logo */
+    .logo-black {
+        filter: invert(1);
+    }
+    
+    .logo-white {
+        filter: invert(0);
+    }

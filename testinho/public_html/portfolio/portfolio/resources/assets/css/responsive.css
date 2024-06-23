@@ -1,0 +1,70 @@
+/* Estilos padrão para todas as telas */
+.atf-header-area .container,
+.atf-counter-area .container,
+.atf-education-area .container {
+    max-width: 100%; /* Ocupar toda a largura disponível */
+    text-align: center; /* Centralizar os elementos */
+    margin-left: auto; /* Centralizar horizontalmente */
+    margin-right: auto; /* Centralizar horizontalmente */
+}
+
+/* Estilos específicos para telas maiores que 1200px */
+@media (min-width: 1200px) {
+    .atf-header-area .container,
+    .atf-counter-area .container,
+    .atf-education-area .container {
+        max-width: 1140px; /* Altere conforme necessário */
+    }
+}
+
+/* Estilos específicos para telas entre 992px e 1199px */
+@media (min-width: 992px) and (max-width: 1199px) {
+    .atf-header-area .container,
+    .atf-counter-area .container,
+    .atf-education-area .container {
+        max-width: 960px; /* Altere conforme necessário */
+    }
+}
+
+/* Estilos específicos para telas entre 768px e 991px */
+@media (min-width: 768px) and (max-width: 991px) {
+    .atf-header-area .container,
+    .atf-counter-area .container,
+    .atf-education-area .container {
+        max-width: 720px; /* Altere conforme necessário */
+    }
+}
+
+/* Estilos específicos para telas menores ou iguais a 767px */
+@media (max-width: 767px) {
+    .atf-header-area .container,
+    .atf-counter-area .container,
+    .atf-education-area .container {
+        /* Nenhuma alteração necessária, pois já definimos max-width: 100% no estilo padrão */
+    }
+}
+
+/* Estilos específicos para telas menores ou iguais a 480px (smartphones em modo retrato) */
+@media (max-width: 480px) {
+    .atf-header-area .container,
+    .atf-counter-area .container,
+    .atf-education-area .container {
+        /* Nenhuma alteração necessária, pois já definimos max-width: 100% no estilo padrão */
+    }
+}
+
+/* Estilos específicos para telas menores ou iguais a 320px (smartphones muito compactos) */
+@media (max-width: 320px) {
+    .atf-header-area .container,
+    .atf-counter-area .container,
+    .atf-education-area .container {
+        /* Nenhuma alteração necessária, pois já definimos max-width: 100% no estilo padrão */
+    }
+}
+
+/* Estilos específicos para telas menores ou iguais a 576px */
+@media (max-width: 576px) {
+    .atf-counter-area .row.justify-content-center {
+        justify-content: center;
+    }
+}

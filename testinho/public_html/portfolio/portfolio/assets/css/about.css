@@ -1,0 +1,193 @@
+/**************************************
+ * 05. About Section Style
+ *************************************/
+
+/* CSS code... */
+
+/* Media queries for responsiveness */
+
+/* For tablets */
+/* For tablets */
+@media (max-width: 768px) {
+    .about-img-wrapper {
+        padding: 0;
+        text-align: center;
+    }
+
+    .about-content {
+        padding-left: 15px;
+    }
+
+    .about-contact-info {
+        padding: 15px;
+    }
+
+    .about-info-details {
+        padding: 10px 0px;
+    }
+}
+
+/* For mobile phones */
+@media (max-width: 480px) {
+    .about-img-wrapper {
+        padding: 0;
+        text-align: center;
+    }
+
+    .about-content {
+        padding-left: 10px;
+    }
+
+    .about-contact-info {
+        padding: 10px;
+    }
+
+    .about-info-details {
+        padding: 5px 0px;
+    }
+}
+
+/* Additional media query for centering text in mobile phones */
+@media (max-width: 480px) {
+    .about-info-details {
+        text-align: center;
+    }
+}
+
+
+ .about-img-wrapper {
+    padding: 0 20px 0 0;
+    margin-bottom: 20px;
+    position: relative;
+    -webkit-transition: all .4s;
+    transition: all .4s;
+}
+
+.about-img-wrapper:after {
+    content: '';
+    background: transparent;
+    position: absolute;
+    z-index: -1;
+    left: 15px;
+    right: 5px;
+    top: 15px;
+    bottom: -15px;
+    border: 2px solid #261b86;
+}
+
+.about-content {
+    padding-left: 30px;
+}
+
+.about-content h3 {
+    font-size: 25px;
+    font-weight: 700;
+}
+
+.about-content h3 span {
+    font-size: inherit;
+    position: relative;
+    display: inline-block;
+}
+
+.about-content h3 span:after {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    left: 0;
+    right: 0;
+    bottom: 2px;
+    height: 10px;
+    width: 100%;
+    background: #ff6908;
+}
+
+.about-content h6 {
+    margin: 10px 0 30px;
+    color: #dcdcdc;
+    font-weight: 500;
+    font-size: 14px;
+    text-transform: capitalize;
+    letter-spacing: 1px;
+}
+
+.about-content p {
+    margin-bottom: 20px;
+}
+
+.about-content p:nth-last-child(-n + 2) {
+    margin-bottom: 0px;
+}
+
+.about-contact-info {
+    padding: 25px 30px;
+    background: #261b86;
+    margin-top: 35px;
+    border-radius: 5px;
+}
+
+.about-info-details {
+    text-align: center;
+    padding: 15px 0px;
+    display: block;
+    overflow: hidden;
+}
+
+.about-info-details .about-info-icon {
+    font-size: 20px;
+    color: #ff6908;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.about-info-details .about-info-text {}
+
+.about-info-details .about-info-text h3 {
+    padding-bottom: 5px;
+    font-weight: 500;
+    font-size: 16px;
+    color: #fff;
+    text-transform: capitalize;
+}
+
+.about-info-details .about-info-text p {
+    font-size: 14px;
+    color: #c5c5c5;
+    text-transform: capitalize;
+}
+
+.about-img-wrapper {
+    text-align: center;
+    padding: 0;
+}
+.about-img-wrapper:after {
+    display: none;
+}
+.about-content {
+    margin-top: 35px;
+}
+.about-img-wrapper {
+    text-align: center;
+}
+/* styles.css */
+
+
+.about-img-wrapper {
+    text-align: center;
+    padding: 0;
+    background-color: black; /* Add a light background color */
+}
+
+.about-img-wrapper img {
+    border: 2px solid #261b86;
+    box-shadow: none; /* Remove box-shadow */
+    padding: 5px; /* Decreased padding from 10px to 5px */
+    background-color: transparent; /* Make the image background transparent */
+    outline: 2px solid #261b86;
+    outline-offset: -10px;
+}
+
+.about-img-wrapper img:hover {
+    box-shadow: none; /* Remove box-shadow on hover */
+    transform: scale(1.03); /* Slightly decreased the scale from 1.05 to 1.03 */
+}

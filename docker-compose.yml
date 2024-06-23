@@ -1,4 +1,3 @@
-version: '3'
 services:
   testinho-mariadb:
     image: 'mariadb:latest'
@@ -56,7 +55,7 @@ services:
       - PHP_IDE_CONFIG=serverName=php-apache-xdebug
       depends_on:
         - testinho-mariadb
-      container_name: testinho_servidor
+      
 
     
 networks:

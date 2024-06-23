@@ -1,0 +1,79 @@
+.wrapper {
+    position: fixed;
+    bottom: 0;
+    left: 20px;
+    right: 0;
+    width: 350px;
+    height: 400px;
+    overflow: auto;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 10px;
+    background-color:#4242e4;
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    z-index: 9999;
+    overflow: hidden;
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.title {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.form {
+    flex: 1;
+    overflow-y: auto;
+}
+
+.bot-inbox {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 10px;
+}
+
+.icon {
+    margin-right: 10px;
+}
+
+.msg-header {
+    background-color: #f1f0f0;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+.msg-header p {
+    margin: 0;
+}
+
+.typing-field {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.input-data {
+    display: flex;
+    align-items: flex-end;
+}
+
+.input-data input {
+    flex: 1;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-right: 5px;
+}
+
+#send-btn {
+    padding: 5px 10px;
+    background-color: #4caf50;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}

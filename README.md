@@ -1,8 +1,5 @@
-<div style="display: flex; align-items: center;">
-  <img src="https://github.com/abraao69/Setup-Docker-PHP-7.4/blob/master/logo.png" alt="Logo" width="200" height="100">
-  <br><br>
-</div>
-<h1>Setup-Docker em php-7.4 containers Docker. </h1>
+# Setup-Docker em php-7.4 containers Docker. </h1>
+<img src="https://github.com/abraao69/abraao69/blob/main/Navy%20Blue%20Geometric%20Technology%20LinkedIn%20Banner%20(2).png" alt="Logo">
 <img src="https://i.ytimg.com/vi/TflDUt3FCDg/maxresdefault.jpg" alt="Logo" width="1000" height="600">
 
 ## O servidor está configurado com muitos complementos sendo grande parte deles desnecessários.  

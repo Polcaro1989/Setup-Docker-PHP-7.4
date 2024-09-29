@@ -6,9 +6,6 @@
 Retire-os conforme quiser personalizar sua instalação no arquivo dockerfile.  
 Além disso, esse projeto é bom para personalizar para outros projetos Web também.  
   
-
-## Setup Instalação
-
 ## Instalação do ambiente de desenvolvimento
 ### Instalação de algumas dependências
 ```

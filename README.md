@@ -107,6 +107,6 @@ sudo apt-get install composer
 ## 
      ```
 
-## Trabalhando com temas e plugins
+## Trabalhando com temas e plugins:
 
 Após a configuração, você encontrará os temas e plugins padrão do WordPress instalados. Esta configuração permite que você crie ou modifique temas e plugins diretamente dentro dessas pastas. Quaisquer alterações que você fizer serão refletidas em tempo real no seu site de desenvolvimento local.

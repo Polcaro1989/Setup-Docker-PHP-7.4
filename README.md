@@ -1,13 +1,12 @@
-# Setup-Docker em php-7.4 containers Docker. </h1>
+# Setup-Docker em php-7.4 containers Docker:</h1>
 <img src="https://github.com/abraao69/abraao69/blob/main/Navy%20Blue%20Geometric%20Technology%20LinkedIn%20Banner%20(2).png" alt="Logo">
 <img src="https://i.ytimg.com/vi/TflDUt3FCDg/maxresdefault.jpg" alt="Logo" width="1000" height="600">
 
-## O servidor está configurado com muitos complementos sendo grande parte deles desnecessários.  
+## O servidor está configurado com muitos complementos sendo grande parte deles desnecessários:
 Retire-os conforme quiser personalizar sua instalação no arquivo dockerfile.  
 Além disso, esse projeto é bom para personalizar para outros projetos Web também.  
   
-## Instalação do ambiente de desenvolvimento
-### Instalação de algumas dependências
+## Instalação do ambiente de desenvolvimento:
 ```
 sudo apt-get install \
     apt-transport-https \
@@ -19,7 +18,7 @@ sudo apt-get install \
   
 
 ### 
-### Instalação do Docker
+### Instalação do Docker:
 Para instalação no linux mint segue a url:
 https://linuxiac.com/how-to-install-docker-on-linux-mint-21/
 
@@ -67,11 +66,11 @@ docker-compose --version
 ```
   
 ##
-### Para usar o Docker sem usar sudo
+### Para usar o Docker sem usar sudo:
 https://docs.docker.com/engine/install/linux-postinstall/
   
 ##  
-### Configurar para o fuso horário de São Paulo
+### Configurar para o fuso horário de São Paulo:
 ```
 sudo timedatectl set-timezone America/Sao_Paulo
 ```
@@ -83,13 +82,13 @@ sudo add-apt-repository ppa:ondrej/php
 ```
 
 ##
-### Instalar os pacotes do PHP instalado. Verificar com php version.
+### Instalar os pacotes do PHP instalado. Verificar com php version:
 ```
 sudo apt-get install -y php8.2-cli php8.2-common php8.2-pgsql php8.2-zip php8.2-gd php8.2-mbstring php8.2-curl php8.2-xml php8.2-bcmath
 ```
 
 ##
-### Install Composer
+### Install Composer:
 ```
 curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin --filename=composer
 ```
